@@ -25,9 +25,6 @@ export async function POST(request: Request) {
         Email: {
           email: email,
         },
-        Country: {
-            select: { name: 'Fake' },
-          }, 
          },
     });
 

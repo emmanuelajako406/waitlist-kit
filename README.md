@@ -258,13 +258,13 @@ import { CountdownTimer } from "@/components/countdown-timer";
 #### Behavior
 
 - Client component (`'use client'`) — updates every second via `setInterval`.
-- Uses `framer-motion`'s `AnimatePresence` to animate each digit rolling in/out vertically when it changes.
+- Uses `motion`'s `AnimatePresence` to animate each digit rolling in/out vertically when it changes.
 - Renders a placeholder skeleton (invisible pulse block) until `isMounted` is `true`, to avoid a server/client hydration mismatch on the initial render.
 - When `launchDate` has already passed, all values freeze at `00` rather than going negative.
 
 #### Dependencies
 
-Requires `framer-motion`:
+Requires `motion`:
 
 ```bash
 npm install framer-motion
