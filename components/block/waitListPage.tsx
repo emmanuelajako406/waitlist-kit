@@ -66,9 +66,9 @@ export default function Home() {
         <div className="text-sm text-foreground/80 font-medium flex items-center justify-center gap-2">
           <span>&copy; {new Date().getFullYear()} </span>
           <span className="h-1 w-1 rounded-full bg-foreground/30" />
-          <a href="#" className="hover:text- transition-colors">Get this template</a>
+          <a href="https://launchpadnext.com/templates/waitlist-kit" target="_blank" className="hover:text- transition-colors">Get this template</a>
           <span className="h-1 w-1 rounded-full bg-foreground/30" />
-          <span>Built in Next.js</span>
+          <span>Built by <a href="https://launchpadnext.com" className="underline font-bold hover:opacity-80" target="_blank">LaunchPad Next</a> </span>
         </div>
 
       </footer>

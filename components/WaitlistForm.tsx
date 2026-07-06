@@ -5,8 +5,11 @@ import { Input } from "@/components/input";
 import { Button } from "@/components/button";
 
 export function WaitlistForm() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
   const [message, setMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -17,15 +20,24 @@ export function WaitlistForm() {
     try {
       const res = await fetch("/api/waitlist", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name,
+          email,
+        }),
       });
 
       const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+
+      if (!res.ok) {
+        throw new Error(data.error || "Something went wrong.");
+      }
 
       setStatus("success");
       setMessage(data.message);
+      setName("");
       setEmail("");
     } catch (err: any) {
       setStatus("error");
@@ -34,11 +46,20 @@ export function WaitlistForm() {
   };
 
   return (
-    <div className="w-full max-w-md mx-auto space-y-3">
-      <form 
-        onSubmit={handleSubmit} 
-        className="flex flex-col items-stretch justify-center gap-4"
+    <div className="mx-auto w-full max-w-md space-y-3">
+      <form
+        onSubmit={handleSubmit}
+        className="flex flex-col items-stretch gap-4"
       >
+        <Input
+          type="text"
+          required
+          placeholder="Your name"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          disabled={status === "loading"}
+        />
+
         <Input
           type="email"
           required
@@ -58,7 +79,13 @@ export function WaitlistForm() {
       </form>
 
       {message && (
-        <p className={`text-sm font-medium ${status === "success" ? "text-emerald-600" : "text-red-500"}`}>
+        <p
+          className={`text-sm font-medium ${
+            status === "success"
+              ? "text-emerald-600"
+              : "text-red-500"
+          }`}
+        >
           {message}
         </p>
       )}

@@ -1,4 +1,4 @@
-# WaitKit
+# Waitlist Kit
 
 A Next.js waitlist starter that uses a **Notion database** as its backend, plus a small set of ready-made UI components for building the landing page.
 
@@ -54,17 +54,17 @@ WaitKit lets you spin up a waitlist landing page in minutes, using a **Notion da
 
 > **Tip:** Keep `Email` as the Title property — WaitKit uses it as the unique identifier when checking for duplicate signups.
 
-3. Click **Share** (top right of the database) → **Invite** → add your integration (created in the next step) with **Can edit** access.
+3. Click **Share** (top right of the database) → **Invite** → add your connection (created in the next step) with **Can edit** access.
 
 ### 2. Create a Notion Integration
 
-1. Go to [notion.so/my-integrations](https://www.notion.so/my-integrations).
-2. Click **New integration**.
+1. Go to [notion.so/my-integrations](https://app.notion.com/developers/connections).
+2. Click **New connection**.
 3. Name it (e.g. `WaitKit Production`), select the associated workspace, and set capabilities to:
    - Read content
    - Insert content
    - Update content
-4. Copy the **Internal Integration Secret** — this is your `NOTION_API_KEY`.
+4. Copy the **Integration access token** — this is your `NOTION_API_KEY`.
 
 ### 3. Get Your Database ID
 
@@ -76,11 +76,10 @@ https://www.notion.so/yourworkspace/1a2b3c4d5e6f7g8h9i0j?v=...
 
 The **32-character string** right after your workspace name (before `?v=`) is your `NOTION_DATABASE_ID`.
 
-### 4. Install WaitKit
+### 4. Install Waitlist Kit
 
 ```bash
-npx create-waitkit-app@latest my-waitlist
-cd my-waitlist
+cd waitlist-kit
 npm install
 ```
 
@@ -89,10 +88,14 @@ npm install
 Create a `.env.local` file in the project root:
 
 ```bash
-NOTION_API_KEY=secret_xxxxxxxxxxxxxxxxxxxxxxxx
+NOTION_API_KEY=ntn_xxxxxxxxxxxxxxxxxxxxxxxx
 NOTION_DATABASE_ID=1a2b3c4d5e6f7g8h9i0j1k2l3m4n5o6p
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
+The database ID is the 32-character identifier.
+The URL should look similar to:
+
+https://www.notion.so/xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx?v=...
 
 | Variable | Description |
 |---|---|
@@ -153,7 +156,7 @@ export async function POST(req: Request) {
 ### Deploying to Vercel
 
 1. Push your repo to GitHub and import it into Vercel.
-2. In **Project Settings → Environment Variables**, add `NOTION_API_KEY` and `NOTION_DATABASE_ID` for **Production** and **Preview** environments.
+2. In **Project Settings → Environment Variables**, add `NOTION_SECRET` and `NOTION_DATABASE_ID` for **Production** and **Preview** environments.
 3. Redeploy. Vercel does not read your local `.env.local` file — variables must be set in the dashboard.
 
 To keep local and deployed environments in sync:
@@ -267,7 +270,7 @@ import { CountdownTimer } from "@/components/countdown-timer";
 Requires `motion`:
 
 ```bash
-npm install framer-motion
+npm install motion
 ```
 
 #### Known limitation
