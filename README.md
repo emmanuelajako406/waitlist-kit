@@ -54,17 +54,22 @@ WaitKit lets you spin up a waitlist landing page in minutes, using a **Notion da
 
 > **Tip:** Keep `Email` as the Title property — WaitKit uses it as the unique identifier when checking for duplicate signups.
 
-3. Click **Share** (top right of the database) → **Invite** → add your connection (created in the next step) with **Can edit** access.
 
 ### 2. Create a Notion Integration
 
 1. Go to [notion.so/my-integrations](https://app.notion.com/developers/connections).
 2. Click **New connection**.
-3. Name it (e.g. `WaitKit Production`), select the associated workspace, and set capabilities to:
+3. Name it (e.g. `Waitlist Kit`), select the associated workspace, and set capabilities to:
    - Read content
    - Insert content
    - Update content
-4. Copy the **Integration access token** — this is your `NOTION_API_KEY`.
+4. Copy the **Internal Integration Secret**. This will be your `NOTION_API_KEY`.
+
+5. Open the **Access** tab and click **Edit Access**.
+
+6. Select **Private Pages**, search for your Notion database (e.g. **Waitlist Kit**), and grant the integration access to that database.
+
+Without granting access, your application won't be able to read from or write to the database, even if the API key is correct.
 
 ### 3. Get Your Database ID
 
